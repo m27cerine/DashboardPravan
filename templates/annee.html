@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Tableau de Bord</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <button id="menu-btn">&#9776;</button>
+            <h1>Tableau de Bord - Université PRAVAN</h1>
+        </div>
+        <button id="actualiser-btn">Actualiser</button>
+    </header>
+
+    <main class="dashboard-grid">
+
+        <div class="filter-container">
+            <label for="annee-select">Choisissez une année :</label>
+            <select id="annee-select" onchange="onanneeChange()">
+                {% for annee in annees %}
+                    <option value="{{ annee }}">{{ annee }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+
+        <!-- KPI : Nombre total d'étudiants -->
+        <div class="kpi-container">
+            <div class="kpi">
+                <div class="kpi-front">
+                    <div class="icon">👨‍🎓<h6>Nombre total d'étudiants </h6></div>
+                </div>
+                <div class="kpi-back">
+                    <div id="total-etudiants"></div> 
+                </div>
+            </div>
+        </div>
+    
+        <div class="chart-container">
+            <h3>Évolution du nombre d'étudiants par année</h3>
+            <canvas id="graphique-mixte" height="222" width="350"></canvas>
+        </div>
+        
+    </main>
+
+
+    
+    <script src="{{ url_for('static', filename='annee.js') }}"></script>
+</body>
+</html>

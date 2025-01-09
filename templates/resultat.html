@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+    <script src="/static/dashboard.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+
+</head>
+<body>
+<main class="dashboard-grid">
+    <div class="filter-container">
+        <label for="annee-select">Choisissez une année :</label>
+        <select id="annee-select">
+            {% for annee in annees %}
+                <option value="{{ annee }}">{{ annee }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="filter-container">
+        <label for="specialite-select">Choisissez une spécialité :</label>
+        <select id="specialite-select">
+            {% for specialite in specialites %}
+                <option value="{{ specialite }}">{{ specialite }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="button-container">
+        <button class="add-btn" onclick="openModal()">Ajouter un résultat</button>
+    </div>
+
+    <div class="modal" id="add-resultat-modal" style="display: none;">
+        <div class="modal-content">
+            <h2>Ajouter un résultat</h2>
+            <form id="add-resultat-form">
+                <label for="matricule">Matricule :</label>
+                <input type="text" id="matricule" name="matricule" required>
+    
+                <label for="nom">Nom :</label>
+                <input type="text" id="nom" name="nom" required>
+    
+                <label for="prenom">Prénom :</label>
+                <input type="text" id="prenom" name="prenom" required>
+    
+                <label for="sexe">Sexe :</label>
+                <select id="sexe" name="sexe" required>
+                    <option value="M">Masculin</option>
+                    <option value="F">Féminin</option>
+                </select>
+    
+                <label for="annee">Année :</label>
+                <input type="number" id="annee" name="annee" required>
+    
+                <label for="specialite">Spécialité :</label>
+                <input type="text" id="specialite" name="specialite" required>
+    
+                <label for="moyenne">Moyenne :</label>
+                <input type="number" id="moyenne" name="moyenne" step="0.01" required>
+    
+                <div class="modal-actions">
+                    <div class="modal-actions">
+                        <button type="button" onclick="closeModal()">Annuler</button>
+                        <button type="button" onclick="addResultat()">Ajouter</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <div class="table-resultat">
+        <table>
+            <thead>
+                <tr>
+                    <th>checkbox</th>
+                    <th>Matricule</th>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Sexe</th>
+                    <th>Année</th>
+                    <th>Spécialité</th>
+                    <th>Moyenne</th>
+                </tr>
+            </thead>
+            <tbody id="etudiants">
+            </tbody>
+        </table>
+        <button class="delete-btn" onclick="deleteResultat()">Supprimer les résultats sélectionnés</button>
+    </div>
+    
+</main> 
+</body>
+
+</html>

@@ -1,0 +1,60 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+    <script src="/static/dashboard.js"></script>
+</head>
+<body>
+<main class="dashboard-grid">
+    <div class="kpi-container">
+        <div class="kpi">
+            <div class="kpi-front">
+                <div class="icon">👨‍🎓<h6>Nombre total d'étudiants de 2019 à 2021</h6></div>
+            </div>
+            <div class="kpi-back">
+                <div id="kpiEtudiants"></div> 
+            </div>
+        </div>
+    </div>
+    <div class="kpi-container">
+        <div class="kpi">
+            <div class="kpi-front">
+                <div class="icon">🎓<h6>Nombre total de spécialités</h6></div>
+            </div>
+            <div class="kpi-back">
+                <div id="kpiSpecialites"></div> 
+            </div>
+        </div>
+    </div>
+    
+    
+    <div class="chart-container">
+        <h2>Étudiants par année</h2>
+        <canvas id="etudiantsParAnnee"></canvas>
+    </div>
+    <div class="chart-container">
+        <h2>Répartition des Étudiants par tranche de moyenne (Nuage de Points) </h2>
+        <canvas id="trancheMoyenne"></canvas>
+    </div> 
+    <div class="chart-container">
+        <h2>Performance moyenne</h2>
+        <canvas id="performanceMoyenne"></canvas>
+    </div> 
+    <div class="chart-container">
+        <h2>Répartition des Hommes et Femmes par Spécialité</h2>
+        <canvas id="repartitionSexeSpecialite"></canvas>
+    </div>
+    <div class="chart-container">
+        <h2>Répartition par spécialité</h2>
+        <canvas id="evolutionSpecialites"></canvas>
+    </div>
+    <div class="chart-container">
+        <h2>Répartition par genre</h2>
+        <canvas id="repartitionParGenre"></canvas>
+    </div>
+    
+</main> 
+</body>
+</html>

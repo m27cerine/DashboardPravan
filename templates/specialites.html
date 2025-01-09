@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Tableau de Bord</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <button id="menu-btn">&#9776;</button>
+            <h1>Tableau de Bord - Université PRAVAN</h1>
+        </div>
+        <button id="actualiser-btn">Actualiser</button>
+    </header>
+
+    <main class="dashboard-grid">
+
+        <div class="filter-container">
+            <label for="specialite-select">Choisissez une spécialité :</label>
+            <select id="specialite-select" onchange="onSpecialiteChange()">
+                {% for specialite in specialites %}
+                    <option value="{{ specialite }}">{{ specialite }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <!-- Vue globale -->
+            <div class="chart-container">
+                <h3>Évolution du nombre d'étudiants par année</h3>
+                <canvas id="total_etudiant_specialite_annee"></canvas>
+            </div>
+            <div class="chart-container">
+                <h3>Performance moyenne par année</h3>
+                <canvas id="performanceMoyenne"></canvas>
+            </div>
+        
+
+        <!-- Statistiques par année -->
+        <div id="dynamic-content"></div>
+        
+
+    </main>
+
+    <script src="{{ url_for('static', filename='specialite.js') }}"></script>
+</body>
+</html>
